@@ -1,6 +1,7 @@
 package com.capgemini.employeepayrollapp.dto;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -11,12 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeDTO {
+    @NotEmpty(message = "Name cannot be empty")
 
-    private Long id;  // ID should not have validation as it's auto-generated for new employees
-
+    @Min(value = 1, message = "ID must be greater than or equal to 1")
+    private Long id;  // Use Long to match with the Entity
     @Pattern(regexp = "^[A-Z][a-zA-Z ]{2,}$", message = "Name must start with a capital letter and have at least 3 characters")
     private String name;
-
-    @Positive(message = "Salary must be a positive number")
     private double salary;
 }
