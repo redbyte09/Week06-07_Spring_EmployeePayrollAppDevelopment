@@ -1,47 +1,15 @@
 package com.capgemini.employeepayrollapp.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data  // Generates Getters, Setters, toString(), equals(), and hashCode()
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDTO {
-    private long id;
-
+    private Long id;  // Use Long to match with the Entity
     private String name;
-
     private double salary;
-
-    public EmployeeDTO() {
-    }
-
-    public EmployeeDTO(Long id,String name, double salary) {
-
-        this.id=id;
-        this.name = name;
-
-        this.salary = salary;
-    }
-
-// Getters and Setters
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
 }
