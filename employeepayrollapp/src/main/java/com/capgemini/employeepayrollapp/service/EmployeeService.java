@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class EmployeeService {
+public class EmployeeService implements IEmployeeService {
 
     /* private final EmployeeRepository employeeRepository;
 
@@ -113,5 +113,14 @@ public class EmployeeService {
 
         return repository.save(existingEmployee);
     }
+    @Override
+    public List<Employee>getEmployeesByDepartment(String department){
+        List<Employee> employees = repository.findEmployeesByDepartment(department);
+        if (employees.isEmpty()) {
+            throw new EmployeeNotFoundException("No employees found in " + department + " department.");
+        }
+        return employees;
+    }
+
 
 }
