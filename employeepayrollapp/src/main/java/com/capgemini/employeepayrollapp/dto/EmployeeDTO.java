@@ -1,13 +1,13 @@
 package com.capgemini.employeepayrollapp.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data  // Generates Getters, Setters, toString(), equals(), and hashCode()
@@ -17,13 +17,27 @@ public @ToString class EmployeeDTO {
     @NotNull(message = "ID cannot be empty")
     @Min(value = 1, message = "ID must be greater than or equal to 1")
     public Long id;  // Use Long to match with the Entity
+
     @NotNull(message = "Name cannot be empty")
     @Pattern(regexp = "^[A-Z][a-zA-Z ]{2,}$", message = "Name must start with a capital letter and have at least 3 characters")
     public String name;
+
     public double salary;
+
+    @Pattern(regexp = "male|female", message = "Gender need to be male or female")
     public String gender;
-    public String startDate;
+
+    @JsonFormat(pattern = "dd MMM yyyy")
+    @NotNull(message = "startDate should not ne empty")
+    @PastOrPresent(message = "startDate should be past or todays date")
+    public LocalDate startDate;
+
+    @NotBlank(message = "note cannot be Empty")
     public String note;
+
+    @NotBlank(message = "profilePic cannot be Empty")
     public String profilePic;
-    public String department;
+
+    @NotNull(message = "department cannot be Empty")
+    public List<String> department;
 }
