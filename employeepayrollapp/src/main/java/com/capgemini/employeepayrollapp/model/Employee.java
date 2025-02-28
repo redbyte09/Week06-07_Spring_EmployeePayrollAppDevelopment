@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -20,7 +21,7 @@ public @Data class Employee {
     public String name;
     public double salary;
     public String gender;
-    public String startDate;
+    public LocalDate startDate;
     public String note;
     public String profilePic;
     public String department;
