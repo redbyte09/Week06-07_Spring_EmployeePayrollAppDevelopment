@@ -1,37 +1,41 @@
 package com.capgemini.employeepayrollapp.model;
 
 
+import com.capgemini.employeepayrollapp.dto.EmployeeDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import lombok.Data;
+
+
+import java.util.List;
 
 
 @Entity
 @Table(name = "employee")
-@AllArgsConstructor
-public class Employee {
+public @Data class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private double salary;
+    public Long id;
+    public String name;
+    public double salary;
+    public String gender;
+    public String startDate;
+    public String note;
+    public String profilePic;
+    public String department;
 
     public Employee() {}
 
-    public Employee(String name, double salary) {
-        this.name = name;
-        this.salary = salary;
+    public Employee(EmployeeDTO employeeDTO) {
+        this.id =employeeDTO.id;
+        this.name = employeeDTO.name;
+        this.salary = employeeDTO.salary;
+        this.gender = employeeDTO.gender;
+        this.note = employeeDTO.note;
+        this.startDate = employeeDTO.startDate;
+        this.profilePic = employeeDTO.profilePic;
+        this.department = employeeDTO.department;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public double getSalary() { return salary; }
-    public void setSalary(double salary) { this.salary = salary; }
 }
